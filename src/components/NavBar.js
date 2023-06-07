@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import logo from '../assets/banana-01.png';
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const {isAuth} = useContext(AuthContext);
+
+  function clickHandler() {
+      isAuth===true?navigate("/profile"):navigate("/signup")
+  }
 
   return (
     <nav>
@@ -17,18 +23,22 @@ function NavBar() {
         </Link>
 
       <div>
+
         <button
           type="button"
-          onClick={() => history.push('/signin')}
+          onClick={() => navigate('/signin')}
         >
-          Log in
+          {isAuth===true?"Ingelogd":"Log in"}
         </button>
+
         <button
           type="button"
-          onClick={() => history.push('/signup')}
+          onClick={clickHandler}
         >
-          Registreren
+            {isAuth===true?"Profiel": "Registreren"}
         </button>
+
+
       </div>
     </nav>
   );
