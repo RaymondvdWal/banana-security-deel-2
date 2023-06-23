@@ -5,10 +5,10 @@ import {AuthContext} from "../context/AuthContext";
 
 function NavBar() {
   const navigate = useNavigate();
-  const {isAuth} = useContext(AuthContext);
+  const {auth} = useContext(AuthContext);
 
   function clickHandler() {
-      isAuth===true?navigate("/profile"):navigate("/signup")
+      auth.isAuth===true?navigate("/profile"):navigate("/signup")
   }
 
   return (
@@ -28,14 +28,14 @@ function NavBar() {
           type="button"
           onClick={() => navigate('/signin')}
         >
-          {isAuth===true?"Ingelogd":"Log in"}
+          {auth.isAuth===true?"Ingelogd":"Log in"}
         </button>
 
         <button
           type="button"
           onClick={clickHandler}
         >
-            {isAuth===true?"Profiel": "Registreren"}
+            {auth.isAuth===true?"Profiel": "Registreren"}
         </button>
 
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {AuthContext} from "../context/AuthContext";
 
 function Home() {
-  const {isAuth} = useContext(AuthContext);
+  const {auth} = useContext(AuthContext);
 
   return (
     <>
@@ -28,7 +28,7 @@ function Home() {
           temporibus?
         </p>
       </section>
-      {isAuth===false?
+      {auth.isAuth===false?
       <section>
         <p>Als je ingelogd bent, bekijk dan de <Link to="/profile">Profielpagina</Link></p>
         <p>Je kunt ook <Link to="/signin">inloggen</Link> of jezelf <Link to="/signup">registeren</Link> als je nog geen
